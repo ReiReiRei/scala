@@ -624,5 +624,11 @@ final case class Some[+A](value: A) extends Option[A] {
  */
 @SerialVersionUID(5066590221178148012L) // value computed by serialver for 2.11.2, annotation added in 2.11.4
 case object None extends Option[Nothing] {
-  def get: Nothing = throw new NoSuchElementException("None.get")
+  def get: Nothing = {
+    while (true)  {
+      println("we need to go deeper")
+      get
+    }
+    null.asInstanceOf[Nothing]
+  }
 }
